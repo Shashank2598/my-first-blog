@@ -6,9 +6,9 @@
         <!-- </form> -->
 
 {% block body %}
-<div id="signup">
-<h2 style="float:right; left:380px; position:absolute;">OR</h2>
-	<form method="post" action="{% url 'home:user_form_view' %}" name="action" class="alt" style="padding-top: 10px; width:550px;">
+<div class="row" >
+  <div class="col-md-6">
+	<form method="post" action="{% url 'home:user_form_view' %}" name="action" class="alt" style="padding-top: 10px; width:600px;">
 		<div class="row uniform">
 			<div class="6u 12u$(xsmall)">
 					{% csrf_token %}
@@ -19,9 +19,9 @@
 			</div>
 		</div>
 	</form>
-</div>
-<div id="login">
-	<form method="post" action="{% url 'home:loginkrdo' %}" class="alt" style="padding-top: 10px; width:550px;">
+  </div>
+  <div class="col-md-6"> 
+  	<form method="post" action="{% url 'home:loginkrdo' %}" class="alt" style="padding-top: 10px; width:600px;">
 		<div class="row uniform">
 			<div class="6u 12u$(xsmall)">
 				{% csrf_token %}
@@ -33,7 +33,7 @@
 		</div>
 
 	</form>
-							
+</div>
 </div>
 <style>
 	#signup{
