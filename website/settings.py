@@ -41,7 +41,6 @@ INSTALLED_APPS = [
     'friends.apps.FriendsConfig',
     'aboutme.apps.AboutmeConfig',
     'family.apps.FamilyConfig',
-    'sorl.thumbnail',
 ]
 
 MIDDLEWARE = [
