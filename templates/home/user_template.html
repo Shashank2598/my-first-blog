@@ -1,5 +1,53 @@
- <form role="form" action = "{% url 'home:user_form_view' %}" method="POST">
-          {% csrf_token %}
-{{ form.as_p}}
-        <button type="submit" class="btn btn-success">Submit</button>
-        </form>
+{% extends 'base2.html' %}
+ <!-- <form role="form" action = "{% url 'home:user_form_view' %}" method="POST"> -->
+          <!-- {% csrf_token %} -->
+<!-- {{ form.as_p}} -->
+        <!-- <button type="submit" class="btn btn-success">Submit</button> -->
+        <!-- </form> -->
+
+{% block body %}
+<div id="signup">
+<h2 style="float:right; left:380px; position:absolute;">OR</h2>
+	<form method="post" action="{% url 'home:user_form_view' %}" name="action" class="alt" style="padding-top: 10px; width:550px;">
+		<div class="row uniform">
+			<div class="6u 12u$(xsmall)">
+					{% csrf_token %}
+				{{form1.as_p}}
+			<ul class="actions">
+				<li style="padding-left:0px;"><button type="submit" class="button special">Sign Up</button></li>
+			</ul>
+			</div>
+		</div>
+	</form>
+</div>
+<div id="login">
+	<form method="post" action="{% url 'home:loginkrdo' %}" class="alt" style="padding-top: 10px; width:550px;">
+		<div class="row uniform">
+			<div class="6u 12u$(xsmall)">
+				{% csrf_token %}
+				{{form2.as_p}}
+			<ul class="actions">
+				<li><button type="submit" class="button special">Login</button></li>
+			</ul>
+			</div>
+		</div>
+
+	</form>
+							
+</div>
+<style>
+	#signup{
+	  width: 400px;
+	  height:700px;
+    float: left;
+
+	}
+	#login{
+ width: 400px;
+ height:700px;
+    float: left;
+
+
+	}
+</style>
+	{% endblock %}

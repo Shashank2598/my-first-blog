@@ -5,9 +5,10 @@ from django.views import generic
 from django.views import View
 from django.views.generic.edit import CreateView,UpdateView,DeleteView
 from django.shortcuts import get_object_or_404
-from .forms import UserForm,LoginForm,ProfileForm
+from .forms import UserForm,LoginForm,ProfileForm,AddPostForm
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.models import User
+from .forms import UserForm,LoginForm
 # Create your views here.
 class homeview(generic.ListView):
 	template_name = 'home/homepage.html'
@@ -44,16 +45,16 @@ class detailview(generic.DetailView):
 
 class postCreate(CreateView):
 	model = post
-	fields = ['title','category','by','description','pic']
-
+	form_class = AddPostForm
 
 class UserFormView(View):
 	template_name='home/user_template.html'
 	def get(self,request):
-		form = UserForm()
 		if request.user.is_authenticated:
 			return redirect('home:homepage')
-		return render(request,self.template_name,{'form':form})
+		return render(request,self.template_name,{'form1':UserForm(),
+						'form2':LoginForm()
+						})
 
 	def post(self,request):
 		form = UserForm(request.POST)
@@ -69,17 +70,18 @@ class UserFormView(View):
 				if user.is_active:
 					login(request,user)
 					return redirect('home:homepage')
-		return render(request,self.template_name,{'form':form})
+		return render(request,self.template_name,{'form1':UserForm(),
+			'form2':LoginForm()
+			})
 
 def logoutkrdo(request):
 	logout(request)
 	return redirect('home:user_form_view')
 
 class loginkrdo(View):
-	template_name = 'home/login_template.html'
+	template_name = 'home/user_template.html'
 	def get(self,request):
-		form = LoginForm()
-		return render(request,self.template_name,{'form':form})
+		return render(request,self.template_name,{'form1':UserForm(),'form2':LoginForm()})
 
 	def post(self,request):
 		username = request.POST['username']
@@ -89,7 +91,9 @@ class loginkrdo(View):
 			login(request, user)
 			return redirect('home:homepage')
 		else:
-			return render(request,self.template_name,{'form':form})
+			return render(request,self.template_name,{'form1':UserForm(),
+				'form2':LoginForm()
+				})
 
 class profileupdate(View):
 	template_name = 'home/profile_template.html'

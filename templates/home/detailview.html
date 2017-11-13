@@ -1,50 +1,45 @@
 {% extends 'base.html' %}
+{% block title %}{{ object.title }}{% endblock %}
+
 {% block body %}
-<h1> {{ user.profile.bio}}</h1>
-      <style>
-        *{
-          color: white;
-        }
-      </style>
-      <div class="main-content"  align="center" style=" color: white;">
-      <h2>{{ object.title}}</h2>
-      <h5><span class="glyphicon glyphicon-time"></span> Post by {{ object.by }},{{ object.timestamp }}.</h5>
-      <h5><span class="label label-danger">{{ object.category }}</span></h5>
-      <p>{{ object.description }}</p>
-      <br><br>
-    </div>
 
+   
+<!-- Post -->
+              <section class="post">
+                <header class="major">
+                  <span class="date">{{ object.timestamp }}</span>
+                  <h1>{{ object.title }}</h1>
+                  <h4> By- {{ object.by }}</h4>
+                </header>
+                <div class="image main"><img src="{{ object.pic.url }}" alt=""  style=" height:700px;"/></div>
+                <p>{{ object.description }} </p>
+              </section>
 
-
-      <div class="container-fluid">
-          <h4>Leave a Comment:</h4>
-          <p><span class="badge">2</span> Comments:</p><br>
-        
-      <div class="row">
-        <div class="col-md-12 text-center">
-        <form role="form" action = "{% url 'home:detailview' object.id %}" method="POST">
-          {% csrf_token %}
-          <div class="form-group">
-            <textarea class="form-control" name = "again" rows="5" required>
-            </textarea>
-          </div>
-        <button type="submit" class="btn btn-success">Submit</button>
-        </form>
-        <br><br>
-      </div>
-       
-       {% for comments in all_comments %}
-        <div class="col-sm-10">
-          <h4><small></small></h4>
-          <p>
+          <h2>Leave a Comment:</h2>
+          <form method="post" action="{% url 'home:detailview' object.id %}" class="alt">
+              <div class="row uniform">
+                 {% csrf_token %}
+                <div class="12u$">
+                  <textarea name = "again" id="demo-message" placeholder="Write here.." rows="6"></textarea>
+                </div>
+              </div>
+              <div class="12u$">
+                        <ul class="actions">
+                          <li><input type="submit" value="Comment" class="special" style = "margin-top:10px;" /></li>
+                        </ul>
+                      </div>
+          </form>
+          <br><br>
+          <h2>Comments:</h2>
+        {% for comments in all_comments %}  
+          <p><strong>{{ user.profile.username}}</strong><br> {{comments.time}}<br>
             {{ comments.name }}
           </p>
           <br>
-        </div>
         {% endfor %}
-    
-          </div>
-        </div>
-      </div>
-      </div>
 {% endblock %}
+
+
+
+
+

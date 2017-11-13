@@ -3,5 +3,46 @@
 {% block active_friends %} active {% endblock %}
 
 {% block body %}
-<h1> This is friends page </h1>
+<div id="main">
+<h2>My School Friends</h2>
+
+									<h3>Aalok and Tejas</h3>
+									{% load static %}
+									<span class="image fit"><img src="{% static 'media/images/school.jpg' %}" alt="" /></span>
+									<div class="box">
+										<h2>True words</h2>
+									<blockquote>Good friends are hard to find, harder to leave, and impossible to forget.</blockquote>
+									<hr />
+										<p>
+											Our Friendship can't be explained with words , stil I try, My School days become awesome and memorable because of these guys. That Last Bench , Tutions ke baad ki gediya,Farewell etc. is unforgettable. Miss you Guys!!!
+										</p>
+									</div>
+									<hr />
+
+<h2>My College Friends</h2>
+
+									<h3>Vishnu,Naman,Anshul,Chhotu...</h3>
+									{% load static %}
+									<span class="image fit"><img src="{% static 'media/images/college.jpg' %}" alt="" /></span>
+									<div class="box">
+										<p>The Fun Part came in my college life because of these people. Soon we will take our own different paths but I hope we will always celebrate each other's birthday like we celebrate now ("\vo rama ke dinner, anshul ki movies ,Milan ke gulabjamun etc.) 
+										</p>
+									</div>
+
+									<hr />
+									<h3>Goel , Sachin </h3>
+									{% load static %}
+									<span class="image fit"><img src="{% static 'media/images/college1.jpg' %}" alt="" /></span>
+									<div class="box">
+										<p>
+											One of the most dedicated and hard working guy I've ever met Sachin 'CE wala' and most carefree yet talented Shubham Goel. 
+										</p>
+									</div>
+
+
+									<hr />
+
+
+									
+</div>
 {% endblock %} 

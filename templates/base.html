@@ -1,83 +1,82 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>{% block title %}My blog{% endblock %}</title>
-    {% load staticfiles %}
-    <link rel="back image" type="image/jpg" href = "{%  static 'home/images/back.jpg' %}"/>
-    <link rel="shortcut icon" type="image/png" href="{%  static 'favicon.ico' %}"/>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
-    <link href='https://fonts.googleapis.com/css?family=Satisfy' rel='stylesheet' type='text/css'>
-    <link rel="stylesheet" type="text/css" href="{% static 'music/style.css' %}"/>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
-    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
-    <style>
-    body{
-      {% load static %}
-      background: url("{% static 'media/images/backgg.jpg' %}") no-repeat;
-      background-attachment: fixed;
-      padding-top: 70px;
-      }
-    }
-</style>
+<!DOCTYPE HTML>
+<html>
+    <head>
+        <title>{% block title %}My blog{% endblock %}</title>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+        {% load staticfiles %}
+        <link href='https://fonts.googleapis.com/css?family=Montserrat' rel='stylesheet'>
+        <link rel="stylesheet" href="{% static 'media/assets/css/main.css' %}" />
+        <noscript><link rel="stylesheet" href="{% static 'media/assets/css/noscript.css' %}" /></noscript>
+    </head>
+    <body class="is-loading">
 
-</head>
-<body >
+        <!-- Wrapper -->
+            <div id="wrapper" class="fade-in">
 
+                <!-- Intro -->
+                    <div id="intro">
+                        <h1>This is<br />
+                        Shashank's Blog</h1>
+                        <p>Hi there! Welcome at my blog.<br />
+                        This is the first Website I've created. Hope you'd like it.</p>
+                        <ul class="actions">
+                            <li><a href="#header" class="button icon solo fa-arrow-down scrolly">Continue</a></li>
+                        </ul>
+                    </div>
 
-<nav class="navbar  navbar-fixed-top navbar-inverse">
-    <div class="container-fluid" >
-        <!-- Header -->
-        <div class="navbar-header " >
-            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#topNavBar">
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </button>
-            <a class="navbar-brand" href="{% url 'home:homepage' %}">Shashank's Blog</a>
-        </div>
+                <!-- Header -->
+                    <header id="header">
+                        <a href="{% url 'home:addposts' %}" class="logo">Add Posts</a>
+                    </header>
 
-        <!-- Items -->
-        <div class="collapse navbar-collapse" id="topNavBar">
-            <ul class="nav navbar-nav">
-                <li class="{% block active_home %}{% endblock %}" ><a href="{% url 'home:homepage' %}">&nbsp; Home</a></li>
-                <li class="{% block active_friends %}{% endblock %}" ><a href="{% url 'friends:friendspage' %}">&nbsp; friends
-                </a></li>
-                <li class="{% block active_family %}{% endblock %}"><a href="{% url 'family:familypage' %}">&nbsp; family</a></li>
-                <li class="{% block active_aboutme %}{% endblock %}"><a href="{% url 'aboutme:mypage' %}">&nbsp; About me</a></li>
-            </ul>
-            <form class="navbar-form navbar-left" role="search" method="POST" action="{% url 'home:homepage' %}">
+                <!-- Nav -->
+                    <nav id="nav">
+                        <ul class="links">
+                            <li class="{% block active_home %}{% endblock %}" ><a href="{% url 'home:homepage' %}">&nbsp; Home</a></li>
+                            <li class="{% block active_friends %}{% endblock %}" ><a href="{% url 'friends:friendspage' %}">&nbsp; friends
+                            </a></li>
+                            <li class="{% block active_family %}{% endblock %}"><a href="{% url 'family:familypage' %}">&nbsp; family</a></li>
+                            <li class="{% block active_aboutme %}{% endblock %}"><a href="{% url 'aboutme:mypage' %}">&nbsp; About me</a></li>
+                               <li><form method="post" action="{% url 'home:homepage' %}" >
+                                  {% csrf_token %}
+                                <div class="field" style="width:150px; margin-left:10px; ">
+                                    <input name="searchbox"  id="name" style="height:45px; padding-left:5px; color:#000000; " placeholder="Enter Post title.." />
+                                </div>
+                                    <button class="button special fit " style="height:45px; margin-top:34px; padding-left:10px; padding-top:-10px; width:70px; margin-left:85px; position:static;" >
+                                        Search
+                                    </button>
+                            </form>
+                        </li>
+                                </ul>
+                            <ul class="links" style="margin-left:200px;">
+                            <li ><a href="{% url 'home:logoutkrdo' %}"> &nbsp; Logout</a></li>
+                        </ul>
+                    </nav>
+                     
+                               
+                    <div id="main">
+
+                        {% block body %}
+                        {% endblock %}
+
+                    </div>
                 
-                <div class="form-group">
-                  {% csrf_token %}
-                    <input type="text" class="form-control" name="searchbox">
-                </div>
-                <button type="submit" class="btn btn-default">Search</button>
-            </form>
-            <ul class="nav navbar-nav navbar-right">
-                <li>
-                    <a href="{% url 'home:addposts' %}">
-                        <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>&nbsp; Add posts
-                    </a>
-                </li>
-                <li>
-                    <a href="{% url 'home:logoutkrdo' %}">
-                        <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>&nbsp; logout
-                    </a>
-                </li>
-                <li>
-                    <a href="{% url 'home:profile' user.id %}">
-                        <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>&nbsp; Edit profile
-                    </a>
-                </li>
 
-            </ul>
-        </div>
+                <!-- Copyright -->
+                    <div id="copyright">
+                        <ul><li>&copy; 2017 Shashank</li><li>All rights reserved</li></ul>
+                    </div>
 
-    </div>
-</nav>
- {% block body %}
- {% endblock %}
+            </div>
 
-</body>
+        <!-- Scripts -->
+        {% load staticfiles %}
+            <script src="{% static 'media/assets/js/jquery.min.js' %}"></script>
+            <script src="{% static 'media/assets/js/jquery.scrollex.min.js' %}"></script>
+            <script src="{% static 'media/assets/js/jquery.scrolly.min.js' %}"></script>
+            <script src="{% static 'media/assets/js/skel.min.js' %}"></script>
+            <script src="{% static 'media/assets/js/util.js' %}"></script>
+            <script src="{% static 'media/assets/js/main.js' %}"></script>
+    </body>
 </html>

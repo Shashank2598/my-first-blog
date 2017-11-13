@@ -17,12 +17,13 @@ class post(models.Model):
 class Comment(models.Model):
 	Post = models.ForeignKey(post,on_delete=models.CASCADE,default = 17)
 	name = models.TextField(max_length = 100,default= 'shashank')
+	time = models.DateTimeField( auto_now=False, auto_now_add = True )
+
 
 class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
+    name = models.CharField(max_length=200,default='User')
     bio = models.TextField(max_length=500, blank=True)
-    location = models.CharField(max_length=30, blank=True)
-    birth_date = models.DateField(null=True, blank=True)
     photo = models.FileField()
 
 

@@ -1,0 +1,58 @@
+<!DOCTYPE HTML>
+<html>
+    <head>
+        <title>{% block title %}My blog{% endblock %}</title>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+        {% load staticfiles %}
+        <link href='https://fonts.googleapis.com/css?family=Montserrat' rel='stylesheet'>
+        <link rel="stylesheet" href="{% static 'media/assets/css/main.css' %}" />
+        <noscript><link rel="stylesheet" href="{% static 'media/assets/css/noscript.css' %}" /></noscript>
+    </head>
+    <body class="is-loading">
+
+        <!-- Wrapper -->
+            <div id="wrapper" class="fade-in">
+
+                <!-- Intro -->
+                    <div id="intro">
+                        <h1>This is<br />
+                        Shashank's Blog</h1>
+                        <p>Hi there! Welcome at my blog.<br />
+                        This is the first Website I've created. Hope you'd like it</p>
+                        <ul class="actions">
+                            <li><a href="#header" class="button icon solo fa-arrow-down scrolly">Continue</a></li>
+                        </ul>
+                    </div>
+            </div>
+
+            <div id="main">
+
+                        {% block body %}
+                         {% endblock %}
+            </div>
+                <!-- Copyright -->
+                <div id="copyright">
+                    <ul><li>&copy; 2017 Shashank</li><li>All rights reserved</li></ul>
+                </div>
+            <style>
+            #main {
+            justify-content: center;
+            width:800px;
+            height:700px;
+            }
+
+        </style>
+
+        <!-- Scripts -->
+        {% load staticfiles %}
+            <script src="{% static 'media/assets/js/jquery.min.js' %}"></script>
+            <script src="{% static 'media/assets/js/jquery.scrollex.min.js' %}"></script>
+            <script src="{% static 'media/assets/js/jquery.scrolly.min.js' %}"></script>
+            <script src="{% static 'media/assets/js/skel.min.js' %}"></script>
+            <script src="{% static 'media/assets/js/util.js' %}"></script>
+            <script src="{% static 'media/assets/js/main.js' %}"></script>
+
+
+    </body>
+</html>
